@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="js/jquery-1.8.2.js"></script>
+		<script type="text/javascript" src="js/knockout-2.2.0.js"></script>
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+		<title>knockout的foreach演示</title>
+	</head>
+	<body>
+		<div class="container-fluid" data-bind="foreach:tasks">
+			<div class="row-fluid" data-bind="foreach:metaProperty">
+				<div class="span3">
+					<span data-bind="text:key"></span>:<span data-bind="text:value"></span>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+		var Task=function(propertyCollection){
+			this.metaProperty=ko.observableArray(propertyCollection);
+		}
+		var KeyValuePair=function(key,value){
+			this.key=key;
+			this.value=value;
+		}
+		var propertyCollection1 = 
+		[
+			new KeyValuePair("派工单号","MO-1412290001-01"),new KeyValuePair("物料代号","TAOTONG"),
+			new KeyValuePair("工序号","10"),new KeyValuePair("图号","TT"),new KeyValuePair("令号","LL"),
+			new KeyValuePair("执行人","张三")
+		];
+		var propertyCollection2 = 
+		[
+			new KeyValuePair("派工单号","MO-1412290001-02"),new KeyValuePair("物料代号","TAOTONG"),
+			new KeyValuePair("工序号","20"),new KeyValuePair("图号","TT"),new KeyValuePair("令号","LL"),
+			new KeyValuePair("执行人","张三")
+		];
+		var propertyCollection3 = 
+		[
+			new KeyValuePair("派工单号","MO-1412290001-03"),new KeyValuePair("物料代号","TAOTONG"),
+			new KeyValuePair("工序号","30"),new KeyValuePair("图号","TT"),new KeyValuePair("令号","LL"),
+			new KeyValuePair("执行人","张三")
+		];
+		var viewMode = {
+			tasks:[
+			new Task(propertyCollection1),
+			new Task(propertyCollection2),
+			new Task(propertyCollection3)
+			]
+		};
+		ko.applyBindings(viewMode);
+		</script>
+	</body>
+</html>
